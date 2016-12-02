@@ -3,6 +3,7 @@ package com.naive.customview01.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,6 +16,22 @@ import java.util.Date;
  */
 
 public class DateUtils {
+
+    /**
+     * 检验日期是否合法
+     * @param str  date str
+     * @param from 格式
+     * @return boolean
+     */
+    public static boolean isValidDate(String str, String from) {
+        SimpleDateFormat formatter = new SimpleDateFormat(from);
+        try {
+            Date date = (Date) formatter.parse(str);
+            return str.equals(formatter.format(date));
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public static Date stringToDate(String source, String pattern) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);

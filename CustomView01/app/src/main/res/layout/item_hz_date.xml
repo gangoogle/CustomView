@@ -17,17 +17,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
-            android:text="Today"
+            android:text=""
             android:textColor="@color/lightGray"
             android:textSize="14sp"/>
 
         <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/tv_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
-            android:text="10/5"
+            android:text=""
             android:textColor="@color/drakGray"
             android:textSize="16sp"/>
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
-            android:text="国庆节"
+            android:text=""
             android:textColor="@color/lightGray"
             android:textSize="11sp"/>
 
@@ -46,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape_round_line">
+            android:background="@drawable/shape_round_line"
+            android:visibility="invisible">
         </FrameLayout>
 
     </LinearLayout>

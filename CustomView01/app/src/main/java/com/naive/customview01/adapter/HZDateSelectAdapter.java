@@ -26,12 +26,14 @@ public class HZDateSelectAdapter extends RecyclerView.Adapter<HZDateSelectAdapte
     private Context mContext;
     private ArrayList<HZDate> mData;
     private int mSelectedDateIndex;
+    private int mDefaultDayIndex;
     private AdapterView.OnItemClickListener onItemClickListener;
 
-    public HZDateSelectAdapter(Context context, ArrayList<HZDate> data, int aSelectedDateIndex) {
+    public HZDateSelectAdapter(Context context, ArrayList<HZDate> data, int defaultDayIndex) {
         this.mContext = context;
         this.mData = data;
-        this.mSelectedDateIndex = aSelectedDateIndex;
+        this.mSelectedDateIndex = defaultDayIndex;
+        this.mDefaultDayIndex = defaultDayIndex;
     }
 
     @Override
@@ -44,23 +46,25 @@ public class HZDateSelectAdapter extends RecyclerView.Adapter<HZDateSelectAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         HZDate hzDate = mData.get(position);
-
         holder.mTvlunar.setText(hzDate.lunar);
         if (position == mSelectedDateIndex) {
-            holder.mTvWeek.setText("Today");
             Date date = DateUtils.stringToDate(hzDate.dateStr, "yyyy-MM-dd");
-            holder.mTvDate.setText(date.getMonth() + 1 + "/" + date.getDate());
+            holder.mTvDay.setText(date.getMonth() + 1 + "/" + date.getDate());
             holder.mTvWeek.setTextColor(mContext.getResources().getColor(R.color.blue));
             holder.mTvlunar.setTextColor(mContext.getResources().getColor(R.color.red));
-            holder.mTvDate.setTextColor(mContext.getResources().getColor(R.color.blue));
+            holder.mTvDay.setTextColor(mContext.getResources().getColor(R.color.blue));
             holder.mFlBottomLine.setVisibility(View.VISIBLE);
         } else {
-            holder.mTvWeek.setText(hzDate.Week);
-            holder.mTvDate.setText(hzDate.date);
+            holder.mTvDay.setText(hzDate.day);
             holder.mTvWeek.setTextColor(mContext.getResources().getColor(R.color.lightGray));
             holder.mTvlunar.setTextColor(mContext.getResources().getColor(R.color.lightGray));
-            holder.mTvDate.setTextColor(mContext.getResources().getColor(R.color.drakGray));
+            holder.mTvDay.setTextColor(mContext.getResources().getColor(R.color.drakGray));
             holder.mFlBottomLine.setVisibility(View.INVISIBLE);
+        }
+        if (position == mDefaultDayIndex) {
+            holder.mTvWeek.setText("Today");
+        } else {
+            holder.mTvWeek.setText(hzDate.Week);
         }
 
     }
@@ -78,7 +82,7 @@ public class HZDateSelectAdapter extends RecyclerView.Adapter<HZDateSelectAdapte
 
         private LinearLayout mLlContainer;
         private TextView mTvWeek;
-        private TextView mTvDate;
+        private TextView mTvDay;
         private TextView mTvlunar;
         private FrameLayout mFlBottomLine;
 
@@ -86,7 +90,7 @@ public class HZDateSelectAdapter extends RecyclerView.Adapter<HZDateSelectAdapte
             super(itemView);
             mLlContainer = (LinearLayout) itemView.findViewById(R.id.ll_date_container);
             mTvWeek = (TextView) itemView.findViewById(R.id.tv_week);
-            mTvDate = (TextView) itemView.findViewById(R.id.tv_date);
+            mTvDay = (TextView) itemView.findViewById(R.id.tv_day);
             mTvlunar = (TextView) itemView.findViewById(R.id.tv_lunar);
             mFlBottomLine = (FrameLayout) itemView.findViewById(R.id.fl_bottom_line);
             //设置点击事件

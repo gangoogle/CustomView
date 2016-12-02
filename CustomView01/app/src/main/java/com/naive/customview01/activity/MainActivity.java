@@ -18,7 +18,6 @@ import com.naive.customview01.R;
 import com.naive.customview01.adapter.MenuAdaper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MenuAdaper.OnItemClick {
 
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view, int position) {
         if (position == 0) {
-            Intent intent = new Intent(this, HorizontalDateSelect.class);
+            Intent intent = new Intent(this, HzDateSelectActivity.class);
             startActivity(intent);
         }
     }
